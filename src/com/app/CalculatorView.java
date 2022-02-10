@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -42,6 +43,7 @@ public class CalculatorView extends JFrame {
 	protected Double previousNumber=null;
 	private JTextField answerField;
 	protected Operation operation=null;
+	protected NumberButtonActionHandler handler = new NumberButtonActionHandler();
 	/**
 	 * Launch the application.
 	 */
@@ -102,15 +104,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonSeven() {
 		if (buttonSeven == null) {
 			buttonSeven = new JButton("7");
-			buttonSeven.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonSeven.getText();
-					textField.setText(value);
-				}
-			});
+			buttonSeven.addActionListener(handler);
 			buttonSeven.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonSeven.setBounds(0, 68, 70, 70);
 		}
@@ -119,15 +113,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonEight() {
 		if (buttonEight == null) {
 			buttonEight = new JButton("8");
-			buttonEight.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonEight.getText();
-					textField.setText(value);
-				}
-			});
+			buttonEight.addActionListener(handler);
 			buttonEight.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonEight.setBounds(101, 68, 70, 70);
 		}
@@ -153,15 +139,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonFour() {
 		if (buttonFour == null) {
 			buttonFour = new JButton("4");
-			buttonFour.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonFour.getText();
-					textField.setText(value);
-				}
-			});
+			buttonFour.addActionListener(handler);
 			buttonFour.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonFour.setBounds(0, 160, 70, 70);
 		}
@@ -170,15 +148,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonFive() {
 		if (buttonFive == null) {
 			buttonFive = new JButton("5");
-			buttonFive.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonFive.getText();
-					textField.setText(value);
-				}
-			});
+			buttonFive.addActionListener(handler);
 			buttonFive.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonFive.setBounds(101, 160, 70, 70);
 		}
@@ -187,15 +157,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonSix() {
 		if (buttonSix == null) {
 			buttonSix = new JButton("6");
-			buttonSix.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonSix.getText();
-					textField.setText(value);
-				}
-			});
+			buttonSix.addActionListener(handler);
 			buttonSix.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonSix.setBounds(199, 160, 70, 70);
 		}
@@ -204,15 +166,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonOne() {
 		if (buttonOne == null) {
 			buttonOne = new JButton("1");
-			buttonOne.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonOne.getText();
-					textField.setText(value);
-				}
-			});
+			buttonOne.addActionListener(handler);
 			buttonOne.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonOne.setBounds(0, 252, 70, 70);
 		}
@@ -221,15 +175,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonTwo() {
 		if (buttonTwo == null) {
 			buttonTwo = new JButton("2");
-			buttonTwo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonTwo.getText();
-					textField.setText(value);
-				}
-			});
+			buttonTwo.addActionListener(handler);
 			buttonTwo.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonTwo.setBounds(101, 252, 70, 70);
 		}
@@ -238,15 +184,7 @@ public class CalculatorView extends JFrame {
 	private JButton getButtonThree() {
 		if (buttonThree == null) {
 			buttonThree = new JButton("3");
-			buttonThree.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(operation == null)
-						previousNumber = null;
-					String value = textField.getText();
-					value += buttonThree.getText();
-					textField.setText(value);
-				}
-			});
+			buttonThree.addActionListener(handler);
 			buttonThree.setFont(new Font("Tahoma", Font.BOLD, 22));
 			buttonThree.setBounds(199, 252, 70, 70);
 		}
@@ -422,4 +360,16 @@ public class CalculatorView extends JFrame {
 		textField.setText(previousNumber.toString());
 	}
 	
+	protected class NumberButtonActionHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(operation == null)
+				previousNumber = null;
+			String value = textField.getText();
+			value += e.getActionCommand();
+			textField.setText(value);
+		}
+		
+	}
 }
